@@ -185,6 +185,8 @@ ClientBin/
 *.publishsettings
 node_modules/
 orleans.codegen.cs
+App/config.spotify.js
+callback.html
 
 # RIA/Silverlight projects
 Generated_Code/

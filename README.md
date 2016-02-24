@@ -3,7 +3,7 @@ Playlist manager for Spotify
 
 http://playlist-manager.com/ (Currently only for Chrome Browser)
 
-Playlist Manager merges the songs of selected playlists into one view, allowing users to easily add and remove songs from different playlists.
+Playlist Manager merges the songs of selected playlists into one view, allowing users to easily add and remove songs from several playlists.
 
 Playlist Manager helps users with many playlists easily organize and overview them.
 
