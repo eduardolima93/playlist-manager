@@ -8,4 +8,6 @@ It counts with the ability to sort songs by different parameters, most noticeabl
 
 Users can also quickly play a preview of any song, as well as play the full song inside Spotify with the Spotify Play Button.
 
-Using Angular1, looking to redo it with Angular2.
+Tips, suggestions and contributions are welcome.
+
+Using Angular1, planning to redo it with Angular2.
