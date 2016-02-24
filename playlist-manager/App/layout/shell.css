@@ -1,0 +1,105 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    background-color: #181818;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+.container-fluid {
+    padding-left: 0;
+}
+
+.header {
+    background-color: #282828;
+    white-space: nowrap;
+}
+
+    .header h3 {
+        cursor: default;
+        color: #5bc0de;
+        margin: .5rem 0;
+        -moz-transition: color .6s ease;
+        -o-transition: color .6s ease;
+        -webkit-transition: color .6s ease;
+        transition: color .6s ease;
+    }
+
+        .header h3:hover {
+            color: #3ca0bd;
+        }
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+    border: 0;
+}
+
+@media (min-width: 544px) {
+    .sidebar {
+        position: fixed;
+        top: 62px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 0;
+        padding-bottom: 0;
+        overflow-x: hidden;
+        overflow-y: hidden; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #282828;
+        border-top: 1px solid #181818;
+    }
+}
+
+
+.nav-list {
+    padding: 0;
+}
+
+    .nav-list li {
+        white-space: nowrap;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+.nav-list-checkbox input {
+    display: none;
+}
+
+.main-content {
+    padding: 0 !important;
+    padding-top: 12px;
+    padding-bottom: 0;
+    background-color: #181818;
+}
+
+.container {
+    max-width: 100%;
+    width: auto;
+    padding: 0;
+}
+
+@media (min-width: 1024px) {
+    .main-content {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main-content .page-header {
+    margin-top: 0;
+}
+
+.content {
+    margin-top: 12px;
+    padding-left: 14px;
+}

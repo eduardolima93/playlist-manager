@@ -1,0 +1,45 @@
+﻿<div class="site-wrapper" data-ng-controller="login as vm">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                </div>
+            </div>
+            <div class="inner cover">
+                <div data-ng-if="vm.isChrome">
+                    <img data-ng-if="!vm.isMobile" style="height: 150px; margin-bottom: 10px;" src="Images/temp-logo.png" />
+                    <h1 class="cover-heading">Playlist Manager</h1>
+                    <p class="lead">
+                        Organize, view and create Spotify playlists easily!
+                    </p>
+                    <p>
+                        Playlist Manager merges the songs of selected playlists into one view, allowing you to effortlessly add and remove songs from several playlists.
+                    </p>
+                    <p data-ng-if="!vm.isMobile">
+                        Be updated with the new songs of many different playlists you follow at the same time, by ordering them by recently added among them.
+                    </p>
+                    <p data-ng-if="!vm.isMobile">
+                        Login to Spotify to try it out!
+                    </p>
+                    <p class="lead">
+                        <!--<a data-ng-click="vm.doLogin();" class="btn btn-primary btn-login">Login</a>-->
+                        <img class="brighten" style="cursor: pointer;" src="Images/log_in-desktop-medium.png" data-ng-click="vm.doLogin();" />
+                    </p>
+                    <p class="lead" data-ng-if="vm.isMobile">
+                        *Mobile version not yet fully supported.
+                    </p>
+                </div>
+                <div data-ng-if="!vm.isChrome">
+                    <p class="lead">
+                        Sorry, the site is currently only supported in Chrome browser.<br />
+                        Please try using Chrome!
+                    </p>
+                </div>
+            </div>
+            <div class="mastfoot">
+                <div class="inner">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

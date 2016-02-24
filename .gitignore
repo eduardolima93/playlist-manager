@@ -185,8 +185,8 @@ ClientBin/
 *.publishsettings
 node_modules/
 orleans.codegen.cs
-App/config.spotify.js
-callback.html
+playlist-manager/App/config.spotify.js
+playlist-manager/callback.html
 
 # RIA/Silverlight projects
 Generated_Code/

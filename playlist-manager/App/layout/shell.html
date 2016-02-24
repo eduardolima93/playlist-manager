@@ -1,0 +1,29 @@
+﻿<div data-ng-controller="shell as vm">
+    <nav class="navbar navbar-inverse navbar-fixed-top header">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h3>
+                    <img style="height: 30px" src="Images/temp-logo.png" />
+                    Playlist Manager
+                    <a class="pull-right brighten" href="https://github.com/eduardolima93/playlist-manager" target="_blank" title="View on GitHub" style="cursor:pointer">
+                        <img style="height: 30px;" src="Images/GitHub-Mark-Light-32px.png" />
+                    </a>
+                </h3>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 col-md-3 col-lg-2 sidebar" id="divSidebar">
+                <div data-ng-include="'app/sidenav/sidenav.html?3'"></div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 main-content">
+                <section id="content" class="content">
+                    <div class="container" data-ng-include="'app/dashboard/dashboard.html?4'">
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

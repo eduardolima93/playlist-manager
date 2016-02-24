@@ -1,0 +1,72 @@
+﻿html, body {
+    height: 100%;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    font-family: Circular,Helvetica,Arial,sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    text-shadow: rgba(0,0,0,0.01) 0 0 1px !important;
+    overflow: hidden;
+}
+
+button, select, html, textarea, input {
+    /*font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif !important;*/
+}
+
+.fake-button {
+    cursor: pointer;
+}
+
+.btn {
+    -moz-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    -o-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    -webkit-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+}
+
+    .btn.btn-primary {
+        background-color: #4aafcd;
+        color: #eeeeee;
+    }
+
+        .btn.btn-primary:hover {
+            background-color: #2689a5;
+            color: white;
+        }
+
+.brighten {
+    -webkit-filter: brightness(85%);
+    -webkit-transition: all .15s ease;
+    -moz-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    -ms-transition: all .15s ease;
+    transition: all .15s ease;
+}
+
+    .brighten:hover {
+        -webkit-filter: brightness(110%);
+    }
+
+.animate-if {
+}
+
+    .animate-if.ng-enter, .animate-if.ng-leave {
+        -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+
+        .animate-if.ng-enter,
+        .animate-if.ng-leave.ng-leave-active {
+            opacity: 0;
+        }
+
+            .animate-if.ng-leave,
+            .animate-if.ng-enter.ng-enter-active {
+                opacity: 1;
+            }

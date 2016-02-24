@@ -1,0 +1,124 @@
+﻿<div class="table-responsive" data-ng-controller="dashboard as vm">
+    <div class="loading-cover animate-if fade-in" data-ng-if="vm.getLoadingBarPercentage()<100 || vm.data.isProcessing">
+        <h2>Loading playlists and songs...</h2>
+        <i class="fa fa-spinner fa-spin fa-4x"></i>
+        <!--<progress data-ng-if="!vm.data.isProcessing" class="progress progress-info" value="{{vm.getLoadingBarPercentage()}}" max="100"></progress>-->
+        <div class="progress" data-ng-if="!vm.data.isProcessing">
+            <div class="progress-bar" style="width: {{vm.getLoadingBarPercentage()}}%;"></div>
+        </div>
+
+    </div>
+    <div class="viewport fade-in animate-if" data-table-height="" data-ng-if="vm.getLoadingBarPercentage()>=100 && !vm.data.isProcessing">
+        <div>
+            <table class="table">
+                <thead id="thdFixed" data-fixed-table-header="">
+                    <tr>
+                        <th colspan="999" class="th-filter">
+                            <div class="form-inline div-filter col-md-7">
+                                <div class="input-group div-filter col-md-6">
+                                    <span class="input-group-addon lupa-filter group-filter"><i class="fa fa-search fa-fw fa-lg"></i></span>
+                                    <input type="text" data-ng-model="vm.filter.value" ng-model-options="{ debounce: 120 }" class="form-control input-filter group-filter" aria-label="Filter" placeholder="Filter">
+                                    <span class="input-group-addon cancel-filter group-filter" data-ng-click="vm.filter.clear()"><i class="fa fa-close fa-fw fa-lg fake-button"></i></span>
+                                </div>
+                                <span class="fa-stack" data-ng-click="vm.sortByLeastRecentAddedAt()" title="Order by added time overall.">
+                                    <i class="fa fa-calendar-o fa-stack-2x"></i>
+                                    <i class="fa fa-chevron-down fa-stack-1x" data-ng-if="vm.sortFilter.currentSorting.isReversed && vm.sortFilter.currentSorting.sortType == vm.sortFilter.sortTypes.leastRecentAddedAt"></i>
+                                    <i class="fa fa-chevron-up fa-stack-1x" data-ng-if="!vm.sortFilter.currentSorting.isReversed && vm.sortFilter.currentSorting.sortType == vm.sortFilter.sortTypes.leastRecentAddedAt"></i>
+                                </span>
+                                <select style="margin-left: 15px;" class="form-control" data-ng-model="vm.sortFilter.currentLocalFilterType" data-ng-change="vm.filterTracklist();">
+                                    <option value="showLocal">Show local songs</option>
+                                    <option value="hideLocal">Hide local songs</option>
+                                    <option value="showOnlyLocal">Show only locals</option>
+                                </select>
+                            </div>
+                            <dir-pagination-controls boundary-links="false" template-url="app/dashboard/dirPagination.tpl.html?asdf" class="col-md-5" data-max-size="7" on-page-change="vm.pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th class="th-song" data-ng-click="vm.sortByName()">
+                            <span>SONG</span>
+                            <span data-ng-if="vm.sortFilter.currentSorting.sortType == vm.sortFilter.sortTypes.name">
+                                <i class="fa fa-chevron-down fa-fw" data-ng-if="vm.sortFilter.currentSorting.isReversed"></i>
+                                <i class="fa fa-chevron-up fa-fw" data-ng-if="!vm.sortFilter.currentSorting.isReversed"></i>
+                            </span>
+                        </th>
+                        <th class="th-limiter th-artist" data-ng-click="vm.sortByArtist()">
+                            <span>ARTIST</span>
+                            <span data-ng-if="vm.sortFilter.currentSorting.sortType == vm.sortFilter.sortTypes.artist">
+                                <i class="fa fa-chevron-down fa-fw" data-ng-if="vm.sortFilter.currentSorting.isReversed"></i>
+                                <i class="fa fa-chevron-up fa-fw" data-ng-if="!vm.sortFilter.currentSorting.isReversed"></i>
+                            </span>
+                        </th>
+                        <th class="th-playlist-name" data-ng-repeat="playlist in vm.data.checkedPlaylistList">
+                            <span title="{{::playlist.name}}">{{::playlist.name.toUpperCase()}}</span>
+                            <span class="fa-stack" data-ng-click="vm.sortByPlaylistAddedAt(playlist.id)" title="Order by time added in this playlist.">
+                                <i class="fa fa-calendar-o fa-stack-2x"></i>
+                                <i class="fa fa-chevron-down fa-stack-1x" data-ng-if="vm.sortFilter.currentSorting.isReversed && vm.sortFilter.currentSorting.playlistId == playlist.id"></i>
+                                <i class="fa fa-chevron-up fa-stack-1x" data-ng-if="!vm.sortFilter.currentSorting.isReversed && vm.sortFilter.currentSorting.playlistId == playlist.id"></i>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-ng-class="{'track-unavailable': !track.isPlayable && !track.isLocal, 'selected-row': $index == vm.selectedRow, 'track-is-playing' : track.isPlaying}"
+                        dir-paginate="track in vm.data.filteredTrackList | filter:vm.filter.value | itemsPerPage: 80" current-page="vm.currentPage"
+                        data-ng-dblclick="vm.playTrack(track)" ng-click="vm.setClickedRow($index)">
+                        <td>
+                            <div style="margin: auto; text-align: center" data-ng-if="!track.isLocal && track.isPlayable">
+                                <i data-hover-class-switch="" data-mouse-in-class="fa-play-circle" data-mouse-out-class="fa-play-circle-o"
+                                   class="fa fa-play-circle-o fa-fw fa-2x fake-button play-button" data-ng-if="!track.showPlayButton && !track.isPlaying" data-ng-click="vm.playTrack(track)"></i>
+
+                                <i data-hover-class-switch="" data-mouse-in-class="fa-pause" data-mouse-out-class="fa-volume-up"
+                                   class="fa fa-volume-up fa-fw fa-2x fake-button" data-ng-if="track.isPlaying" data-ng-click="vm.pausePreview(track)"></i>
+                            </div>
+                            <i class="fa fa-play-circle-o fa-fw fa-2x" data-ng-if="track.isLocal || !track.isPlayable" style="opacity: 0;"></i>
+                        </td>
+                        <td>
+                            <span title="{{::track.name}}" class="td-track-name">
+                                <i class="fa fa-file-sound-o fa-fw;" style="margin-right: 1px;" data-ng-if="track.isLocal" title="Local songs can't be addeed or removed from playlists through the site"></i>
+                                {{::track.name}}
+                            </span>
+                        </td>
+                        <td class="td-limiter td-artists">
+                            <span title="{{::track.artistListSring}}">
+                                {{::track.artistListSring}}
+                            </span>
+                        </td>
+                        <td data-ng-repeat="playlist in vm.data.checkedPlaylistList">
+                            <!--<div data-ng-if="!playlist.isSavedTracks || !track.isLocal">-->
+                            <div data-ng-if="!track.isLocal && playlist.isOwned">
+                                <div type="button" data-ng-if="vm.playlistContainTrack(playlist, track)"
+                                     style="margin: auto; text-align: center">
+                                    <i data-hover-class-switch="" data-mouse-in-class="fa-close" data-mouse-out-class="fa-check" data-ng-click="vm.removeTrack(playlist, track)"
+                                       class="fa fa-check fa-fw icon-checked fa-lg fake-button"></i>
+                                </div>
+                                <div type="button" data-ng-if="!vm.playlistContainTrack(playlist, track)"
+                                     style="margin: auto; text-align: center;">
+                                    <i class="fa fa-plus fa-fw icon-add fa-lg fake-button" data-ng-click="vm.addTrack(playlist, track)"></i>
+                                </div>
+                            </div>
+                            <div data-ng-if="track.isLocal || !playlist.isOwned">
+                                <div type="button" data-ng-if="vm.playlistContainTrack(playlist, track)"
+                                     style="margin: auto; text-align: center">
+                                    <i class="fa fa-check fa-fw icon-checked fa-lg "></i>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="999" class="td-last-row">
+                            <dir-pagination-controls boundary-links="false" template-url="app/dashboard/dirPagination.tpl.html" class="col-md-12 pull-right" data-max-size="7"></dir-pagination-controls>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div data-ng-if="!vm.data.filteredTrackList.length && vm.getLoadingBarPercentage()>=100 && !vm.data.isProcessing" class="loading-cover">
+        <h2>Please select a playlist with songs on the left.</h2>
+    </div>
+</div>

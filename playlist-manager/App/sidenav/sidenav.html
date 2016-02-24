@@ -1,0 +1,45 @@
+﻿<div data-ng-controller="sidenav as vm">
+    <ul class="nav nav-sidebar nav-list" data-list-height="">
+        <li data-ng-repeat="playlist in vm.data.playlistList" title="{{::playlist.name}}">
+            <label class="btn nav-list-checkbox" data-ng-class="{active: playlist.isChecked, highlightitem: playlist.isNew}">
+                <input type="checkbox" autocomplete="off"
+                       data-ng-model="playlist.isChecked" data-ng-change="vm.updateCheckedPlaylistList();">
+                {{::playlist.name}}
+            </label>
+        </li>
+    </ul>
+    <div id="divSideNavFooter">
+        <div id="divAddNewPlaylist" style="padding:0;" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default" data-ng-click="vm.testeClick()">
+                <div style="display:table; width:100%; padding:10px;" class="panel-heading fake-button"
+                     role="tab" id="divAddNewPlaylistHeading" data-toggle="collapse" data-parent="#divAddNewPlaylist"
+                     href="#divNewAddPlaylistForm" aria-expanded="false" aria-controls="divNewAddPlaylistForm"
+                     data-focus-on-click="#txtNewPlaylistName">
+                    <i class="fa fa-plus-circle fa-fw fa-2x" style="display:table-cell"></i>
+                    <span style="display:table-cell; vertical-align:middle">New Playlist</span>
+                </div>
+                <div id="divNewAddPlaylistForm" style="padding:2px 10px 0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="divAddNewPlaylistHeading">
+                    <input data-enter-press="vm.addNewPlaylist()" id="txtNewPlaylistName" style="margin-bottom:.75rem;" type="text" class="form-control" data-ng-model="vm.newPlaylist.name" placeholder="Playlist name">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="checkbox">
+                                <label class="lbl-is-private">
+                                    <input type="checkbox" data-ng-model="vm.newPlaylist.isPrivate" />
+                                    Private playlist
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="btn btn-primary pull-right" type="button" value="Add" data-ng-click="vm.addNewPlaylist()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="max-width: 300px; overflow: hidden; height: 80px;">
+            <iframe data-ng-src="{{vm.currentEmbedUrl}}" width="300" height="80" frameborder="0" allowtransparency="true" style="z-index: 10"></iframe>
+            <!--<i class="fa fa-spinner fa-spin fa-2x" style="position: absolute; left: 150px; bottom: 26px; z-index: 5; color: white;"></i>-->
+        </div>
+        <audio data-track-player="" controls="" style="width: 100%; background-color: #7D7272; margin-bottom: -7px;"></audio>
+    </div>
+</div>

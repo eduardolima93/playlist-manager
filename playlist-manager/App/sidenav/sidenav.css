@@ -1,0 +1,100 @@
+﻿/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+
+.nav-list {
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+}
+
+    .nav-list li {
+        white-space: nowrap;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+.nav-list-checkbox {
+    margin-bottom: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    background-color: inherit;
+    border: 0;
+    color: #adafb2;
+    width: 100%;
+    text-align: left;
+    -moz-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.nav-list-checkbox:hover {
+        color: white;
+        background-color: inherit;
+    }
+
+    .nav-list-checkbox.active {
+        border-left: 5px solid #5bc0de;
+        /*border-left: 4px solid #1ed760;*/
+        color: white;
+        background-color: inherit;
+    }
+
+    .nav-list-checkbox input {
+        display: none;
+    }
+
+
+#divSideNavFooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #282828;
+}
+
+#divAddNewPlaylist {
+    padding: 10px;
+    border-top: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+    background-color: #282828;
+    color: #adafb2;
+}
+
+    #divAddNewPlaylist:hover {
+        background-color: #333333;
+        color: white;
+    }
+
+.lbl-is-private {
+    line-height: 38px;
+    color: #adafb2;
+}
+
+    .lbl-is-private:hover {
+        color: white;
+    }
+
+
+@-webkit-keyframes highlightitem {
+    from {
+        background-color: #f6f76d;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+.highlightitem {
+    -webkit-animation: highlightitem 1.2s ease-out !important;
+}

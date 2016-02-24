@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>Playlist Manager</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+    <link rel="shortcut icon" href="Images/favicon.ico" />
+    <link rel="icon" type="image/png" href="Images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="Images/favicon-16x16.png" sizes="16x16" />
+
+    <link href="Content/bootstrap.css?123" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/angular-toastr.css" rel="stylesheet" />
+
+    <link href="Content/app.css?2" rel="stylesheet" />
+    <link href="App/dashboard/dashboard.css" rel="stylesheet" />
+    <link href="App/sidenav/sidenav.css" rel="stylesheet" />
+    <link href="App/layout/shell.css" rel="stylesheet" />
+    <link href="App/login/login.css?2" rel="stylesheet" />
+
+    <script>
+        if (window.location.href.toLowerCase().indexOf("www") != -1) {
+            window.location = "http://playlist-manager.com/#/login";
+        }
+
+        // Must be first. IE10 mobile viewport fix
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "@-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
+</head>
+<body>
+    <ng-view></ng-view>
+
+    <script src="Scripts/all.min.js"></script>
+    <script src="App/config.spotify.js"></script>
+
+    <!--Gulp already covering these 2 below even in develop-->
+    <!--<script src="app/app.js"></script>
+    <script src="app/config.js"></script>-->
+    <!--Remove everything below for production-->
+
+    <!--<script src="App/directives/fixed-table-header.directive.js"></script>
+    <script src="App/directives/hover-class-switch.directive.js"></script>
+    <script src="App/directives/focus-on-click.directive.js"></script>
+    <script src="App/directives/enter-press.directive.js"></script>
+    <script src="App/sidenav/list-height.directive.js"></script>
+    <script src="App/dashboard/table-height.directive.js"></script>
+    <script src="App/sidenav/track-player.directive.js"></script>
+
+
+    <script src="App/services/sort-filter.service.js"></script>
+    <script src="App/services/data.repository.service.js"></script>
+    <script src="App/services/data.service.js"></script>
+    <script src="App/sidenav/sidenav.js"></script>
+    <script src="App/login/login.js"></script>
+
+    <script src="App/dashboard/dashboard.service.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
+    <script src="app/layout/shell.js"></script>-->
+</body>
+</html>
