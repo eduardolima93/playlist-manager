@@ -187,6 +187,7 @@ node_modules/
 orleans.codegen.cs
 playlist-manager/App/config.spotify.js
 playlist-manager/callback.html
+playlist-manager/Scripts/all.min.js
 
 # RIA/Silverlight projects
 Generated_Code/
