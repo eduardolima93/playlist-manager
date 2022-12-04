@@ -26,11 +26,11 @@
         vm.pageChangeHandler = pageChangeHandler;
         vm.filter = {
             value: "",
-            clear: function() {
+            clear: function () {
                 this.value = "";
             }
         };
-        var throttle = 40;
+        var throttle = 60;
 
         activate();
 
@@ -97,7 +97,7 @@
                         getPlaylistTracks(playlist);
                     }
                 })
-            }, function(err) {
+            }, function (err) {
                 console.log(err);
                 $timeout(function () { getUserPlaylists(offset); }, throttle);
             });
@@ -120,17 +120,16 @@
                 treatedTrackList = _.filter(treatedTrackList, function (track) { return track != null; });
 
                 savedTracks.totalLoadedTracks += data.items.length;
-                if (data.total > savedTracks.totalLoadedTracks) {
-                    //getSavedUserTracks(offset + 50);
+                if (data.total > savedTracks.totalLoadedTracks && !data.next) {
                     $timeout(function () { getSavedUserTracks(offset + 50); }, throttle);
                 } else {
                     savedTracks.isReady = true;
                 }
 
                 vm.data.insertToTrackList(treatedTrackList);
-            },function(err) {
+            }, function (err) {
                 console.log(err);
-                $timeout(function () { getSavedUserTracks(offset); }, throttle);
+                $timeout(function () { getSavedUserTracks(offset); }, throttle + 100);
             });
         }
 
@@ -144,17 +143,16 @@
 
                 playlist.totalLoadedTracks += data.items.length;
 
-                if (playlist.tracks.total > playlist.totalLoadedTracks) {
+                if (playlist.tracks.total > playlist.totalLoadedTracks && !data.next) {
                     $timeout(function () { getPlaylistTracks(playlist, offset + 100); }, throttle);
-                    //getPlaylistTracks(playlist, offset + 100);
                 } else {
                     playlist.isReady = true;
                 }
 
                 vm.data.insertToTrackList(treatedTrackList);
-            }, function(err) {
+            }, function (err) {
                 console.log(err);
-                $timeout(function () { getPlaylistTracks(playlist, offset); }, throttle);
+                $timeout(function () { getPlaylistTracks(playlist, offset); }, throttle + 100);
             });
         };
 
