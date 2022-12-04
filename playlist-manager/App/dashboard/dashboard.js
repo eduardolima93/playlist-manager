@@ -120,7 +120,7 @@
                 treatedTrackList = _.filter(treatedTrackList, function (track) { return track != null; });
 
                 savedTracks.totalLoadedTracks += data.items.length;
-                if (data.total > savedTracks.totalLoadedTracks && !data.next) {
+                if (data.total > savedTracks.totalLoadedTracks && data.next) {
                     $timeout(function () { getSavedUserTracks(offset + 50); }, throttle);
                 } else {
                     savedTracks.isReady = true;
@@ -143,7 +143,7 @@
 
                 playlist.totalLoadedTracks += data.items.length;
 
-                if (playlist.tracks.total > playlist.totalLoadedTracks && !data.next) {
+                if (playlist.tracks.total > playlist.totalLoadedTracks && data.next) {
                     $timeout(function () { getPlaylistTracks(playlist, offset + 100); }, throttle);
                 } else {
                     playlist.isReady = true;
